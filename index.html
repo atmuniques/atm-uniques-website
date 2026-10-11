@@ -1190,5 +1190,76 @@ sizeCards();syncArrows();update();restart();
 </script>
 
 
+
+<script>
+/* Language toggle: EN/اردو - Saman 2026-10-11 */
+(function(){
+  var translations = {
+    'ur': {
+      'Home': 'ہوم',
+      'Search': 'تلاش',
+      'Shop': 'خریداری',
+      'Product Reviews': 'پروڈکٹ ریویوز',
+      'Contact': 'رابطہ',
+      'Search products...': 'پروڈکٹس تلاش کریں...',
+      'Shop by category': 'کیٹیگری کے حساب سے خریدیں',
+      'Customer reviews': 'کسٹمر ریویوز',
+      'About us': 'ہمارے بارے میں',
+      'Learn More >': 'مزید جانیں >',
+      'Order karein': 'آرڈر کریں',
+      'ALL PRODUCTS': 'تمام پروڈکٹس',
+      'Bangles': 'چوڑیاں',
+      'Gadgets': 'گیجٹس',
+      'Jewellery': 'جیولری',
+      'Others': 'دیگر'
+    }
+  };
+  
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang === 'ur' ? 'ur' : 'en');
+    try { localStorage.setItem('atm-lang', lang); } catch(e) {}
+    
+    // Update button states
+    var btns = document.querySelectorAll('.lang-btn');
+    btns.forEach(function(btn){
+      var isUrduBtn = btn.textContent.trim() === 'اردو';
+      var isActive = (lang === 'ur') === isUrduBtn;
+      btn.classList.toggle('active', isActive);
+    });
+    
+    // Translate key elements
+    if (lang === 'ur') {
+      document.querySelectorAll('.nav-link').forEach(function(el){
+        var en = el.textContent.trim();
+        if (translations.ur[en]) {
+          if (!el.dataset.en) el.dataset.en = en;
+          el.textContent = translations.ur[en];
+        }
+      });
+    } else {
+      document.querySelectorAll('.nav-link').forEach(function(el){
+        if (el.dataset.en) el.textContent = el.dataset.en;
+      });
+    }
+  }
+  
+  // Wire up buttons
+  document.addEventListener('DOMContentLoaded', function(){
+    var btns = document.querySelectorAll('.lang-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var lang = btn.textContent.trim() === 'اردو' ? 'ur' : 'en';
+        setLang(lang);
+      });
+    });
+    
+    // Restore saved preference
+    try {
+      var saved = localStorage.getItem('atm-lang');
+      if (saved === 'ur') setLang('ur');
+    } catch(e) {}
+  });
+})();
+</script>
 </body>
 </html>
