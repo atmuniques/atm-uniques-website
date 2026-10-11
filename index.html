@@ -606,13 +606,7 @@ img{max-width:100%;}
 </div>
 </div>
 </section>
-<section class="featured-products" aria-label="Featured products">
-<div class="container">
-<h2 class="section-title with-lines"><span class="deco-line"></span>Featured Products<span class="deco-line"></span></h2>
-<p class="section-sub">Hamare sab se zyada bikne wale products!</p>
-<div class="feat-grid" id="featGrid"></div>
-</div>
-</section>
+
 <section class="contact-us" aria-label="Contact us">
 <div class="container">
 <h2 class="section-title">Contact Us</h2>
@@ -1151,22 +1145,6 @@ sizeCards();syncArrows();update();restart();
 })();
 </script>
 
-<script>
-/* Featured products: top 8 by sold */
-(function(){
-  function renderFeat(){
-    var grid = document.getElementById('featGrid');
-    if(!grid || typeof PRODUCTS === 'undefined') return;
-    var list = PRODUCTS.filter(function(p){return p.stock !== 0;})
-      .sort(function(a,b){return (b.sold||0)-(a.sold||0);}).slice(0,8);
-    grid.innerHTML = list.map(function(p){
-      return '<article class="product-card"><button class="product-media" type="button" data-product="'+p.id+'" aria-label="View '+p.name.replace(/"/g,'&quot;')+'"><img src="'+p.image+'" alt="'+p.name.replace(/"/g,'&quot;')+'" loading="lazy"><span class="product-price">'+p.priceText+'</span>'
-      + (p.topDeal?'<span class="topdeal-badge">⭐ TOP DEAL</span>':(p.sold>=50?'<span class="hot-badge">🔥 HOT</span>':'')) 
-      + '</button><div class="product-body"><h3 class="product-title">'+p.name.replace(/</g,'&lt;')+'</h3><button class="order-btn" type="button" data-product="'+p.id+'">Order karein</button></div></article>';
-    }).join('');
-  }
-  if(document.readyState === 'loading'){document.addEventListener('DOMContentLoaded', renderFeat);}else{renderFeat();}
-})();
-</script>
+
 </body>
 </html>
