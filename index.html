@@ -90,6 +90,22 @@
 /* === SAMAN 2026-10-11: Price badge text black for readability === */
 .product-price{color:#000 !important;}
 .product-price .sold-count{color:#000 !important;}
+
+/* === SAMAN 2026-10-11: Product name white for dark mode readability === */
+@media (prefers-color-scheme: dark) {
+  .product-name, .p-name, .pslide-name { color: #fff !important; }
+  .product-card h3, .product-card .title { color: #fff !important; }
+}
+
+/* === SAMAN 2026-10-11: Force price badge readability on all devices === */
+.product-price {
+  background: #0b5c4b !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
+}
+.product-price * {
+  color: #ffffff !important;
+}
 </style>
 <style>
 /* NAV SPACING FIX - equal margins, no overlap */
