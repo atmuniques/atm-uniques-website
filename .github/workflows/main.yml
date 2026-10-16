@@ -1,0 +1,19 @@
+name: Rename v2 file to index.html
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename atm-uniques-website-v2.html to index.html
+        run: |
+          git config user.name "atmuniques"
+          git config user.email "atmuniques@users.noreply.github.com"
+          git mv atm-uniques-website-v2.html index.html
+          git commit -m "Add 3 S W TRADERS products (103 total)"
+          git push
